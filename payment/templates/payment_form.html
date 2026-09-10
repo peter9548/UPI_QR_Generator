@@ -1,0 +1,256 @@
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Form</title>
+</head>
+<body>
+
+    <h1>Payment Form</h1>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI QR Generator</title>
+</head>
+
+<body>
+
+    <h1>UPI Payment QR Generator</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>UPI ID</label>
+        <br>
+        <input type="text" name="upi_id" placeholder="example@upi" required>
+        <br><br>
+
+        <label>Receiver Name</label>
+        <br>
+        <input type="text" name="receiver_name" placeholder="Enter receiver name" required>
+        <br><br>
+
+        <label>Amount</label>
+        <br>
+        <input type="number" name="amount" step="0.01" min="1" placeholder="Enter amount" required>
+        <br><br>
+
+        <label>Payment Note</label>
+        <br>
+        <input type="text" name="note" placeholder="e.g. Food Payment">
+        <br><br>
+
+        <button type="submit">Generate QR</button>
+
+    </form>
+
+
+    {% if qr_url %}
+    <h2>Your payment qr</h2>
+    
+    <img src="{{qr_url}}" alt="UPI qr code" width="250">
+
+    {% endif %}
+
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UPI QR Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .qr-section img {
+            width: 250px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>UPI Payment QR Generator</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>UPI ID</label>
+            <input
+                type="text"
+                name="upi_id"
+                placeholder="example@upi"
+                required
+            >
+
+            <br><br>
+
+            <label>Receiver Name</label>
+            <input
+                type="text"
+                name="receiver_name"
+                placeholder="Enter receiver name"
+                required
+            >
+
+            <br><br>
+
+            <label>Amount</label>
+            <input
+                type="number"
+                name="amount"
+                step="0.01"
+                min="1"
+                placeholder="Enter amount"
+                required
+            >
+
+            <br><br>
+
+            <label>Payment Note</label>
+            <input
+                type="text"
+                name="note"
+                placeholder="e.g. Food Payment"
+            >
+
+            <button type="submit">
+                Generate QR
+            </button>
+
+        </form>
+
+
+        {% if qr_url %}
+
+            <div class="qr-section">
+
+                <h2>Your Payment QR Code</h2>
+
+                <img
+                    src="{{ qr_url }}"
+                    alt="UPI QR Code"
+                >
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
